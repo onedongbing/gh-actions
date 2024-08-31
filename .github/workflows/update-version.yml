@@ -1,0 +1,22 @@
+name: update-version
+
+on:
+  workflow_call:
+    secrets:
+      WORKFLOW_SECRET:
+        required: false
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          token: ${{ secrets.WORKFLOW_SECRET }}
+
+      - name: Run GitHub Actions Version Updater
+        uses: saadmk11/github-actions-version-updater@v0.8.1
+        with:
+          token: ${{ secrets.WORKFLOW_SECRET }}
