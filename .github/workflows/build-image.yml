@@ -30,7 +30,7 @@ on:
         type: string
     secrets:
       WORKFLOW_SECRET:
-        required: false
+        required: true
       DOCKER_HUB_USERNAME:
         required: true
       DOCKER_HUB_PASSWORD:
