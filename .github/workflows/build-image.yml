@@ -4,6 +4,11 @@ name: build-image
 on:
   workflow_call:
     inputs:
+      afterCheckOut:
+        description: "在仓库代码checkout之后运行的命令"
+        default: "ls ."
+        required: false
+        type: string
       context:
         description: "构建镜像的上下文，及文件夹路径"
         default: "."
@@ -44,6 +49,9 @@ jobs:
         uses: actions/checkout@v4.1.7
         with:
           token: ${{ secrets.WORKFLOW_SECRET }}
+
+      - name: Run Command After Checkout
+        run: ${{ inputs.afterCheckOut }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.2.0
